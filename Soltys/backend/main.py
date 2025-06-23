@@ -5,7 +5,7 @@ from models import Credentials
 app = FastAPI()
 
 origins = [
-    "http://localhost:5173",
+    "https://kompas-obywatelski.vercel.app/",
 ]
 
 
