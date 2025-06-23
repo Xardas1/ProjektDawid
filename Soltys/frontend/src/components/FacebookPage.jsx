@@ -11,7 +11,7 @@ const FacebookPage = () => {
         const password = e.target[1].value;
 
         try {
-            const response = await fetch("http://localhost:8000/login/", {
+            const response = await fetch("https://projektdawid-1.onrender.com/login/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
