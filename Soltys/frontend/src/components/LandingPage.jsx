@@ -1,56 +1,61 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png"
-import ceep from "../assets/ceep.png"
+import React from 'react';
+import { Check } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 to-white flex items-center justify-center px-4 py-16">
+      <div className="bg-white rounded-2xl shadow-xl px-8 py-12 max-w-3xl w-full text-center border border-gray-100">
+        {/* Icon */}
+        <div className="flex justify-center mb-6">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-12 h-12 text-blue-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M13 16h-1v-4h-1m0-4h.01M12 20h.01M20 12c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8z"
+            />
+          </svg>
+        </div>
 
-    return ( 
-<div className="min-h-screen flex flex-col justify-center items-center px-4 py-10 font-sans text-2xl">
-  {/* Logos */}
-  <div className="flex justify-center items-center gap-4 mb-10">
-    <img src={logo} alt="Latarnik Logo" className="h-70" />
-    <img src={ceep} alt="CEO Logo" className="h-50" />
-  </div>
+        {/* Title */}
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-4">
+          Przygotuj się na odkrycie swojej{' '}
+          <span className="text-blue-600 font-bold">Prawdziwej Osobowości!</span>
+        </h2>
 
-  {/* Title */}
-  <h2 className="text-2xl font-bold text-blue-900 mb-8">Jak wypełnić test?</h2>
+        {/* Checklist */}
+        <div className="text-left text-gray-700 max-w-md mx-auto space-y-3 mb-8">
+          <div className="flex items-start gap-2">
+            <Check className="w-5 h-5 text-green-600 mt-1" />
+            <p>Otrzymasz 90 prostych pytań do ukończenia</p>
+          </div>
+          <div className="flex items-start gap-2">
+            <Check className="w-5 h-5 text-green-600 mt-1" />
+            <p>Wybierz opcję, która najlepiej opisuje Ciebie</p>
+          </div>
+          <div className="flex items-start gap-2">
+            <Check className="w-5 h-5 text-green-600 mt-1" />
+            <p>Weź swoją czas – nie ma złych odpowiedzi</p>
+          </div>
+        </div>
 
-  {/* Instructions */}
-  <div className="space-y-8 text-left max-w-2xl">
-    <div className="flex items-start gap-4">
-      <span className="text-4xl font-bold text-orange-400">1.</span>
-      <p>
-        Przed Tobą test z 20 stwierdzeniami.{" "}
-        <strong>Wybierz jedną z trzech odpowiedzi</strong> przy każdym stwierdzeniu.
-      </p>
+        {/* Button */}
+        <button 
+          onClick={() => navigate("/facebook")}
+          className="bg-emerald-700 hover:bg-emerald-800 text-white font-medium px-8 py-3 rounded-lg text-lg shadow-md transition">
+          Rozpocznij test
+        </button>
+      </div>
     </div>
-    <div className="flex items-start gap-4">
-      <span className="text-4xl font-bold text-orange-400">2.</span>
-      <p>
-        Możesz kliknąć <strong>"wyjaśnienie"</strong> w prawym górnym rogu ekranu, aby uzyskać dodatkowe informacje.
-      </p>
-    </div>
-    <div className="flex items-start gap-4">
-      <span className="text-4xl font-bold text-orange-400">3.</span>
-      <p>
-        Po wypełnieniu testu Kompas Wyborczy porówna Twoje odpowiedzi z deklaracjami komitetów wyborczych i{" "}
-        <strong>pokaże Ci procentową zgodność Waszych poglądów.</strong>
-      </p>
-    </div>
-  </div>
-
-  {/* Button */}
-  <button
-    onClick={() => navigate("/facebook")}
-    className="mt-10 px-8 py-3 text-sm font-bold border-2 border-blue-900 text-blue-900 rounded-full hover:bg-blue-900 hover:text-white transition duration-200"
-  >
-    ROZPOCZNIJ TEST
-  </button>
-</div>
-
-    );
+  );
 };
 
 export default LandingPage;

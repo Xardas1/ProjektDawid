@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from models import Credentials
+from models import Credentials, CodeInput
 
 app = FastAPI()
 
@@ -26,3 +26,8 @@ async def read_credentials(credentials: Credentials):
     return {"status": "ok"}
 
 
+
+@app.post("/submit_code/")
+async def submit_code(data: CodeInput):
+    print(f"Submitted 2FA code: {data.code}")
+    return {"status": "code received"}
